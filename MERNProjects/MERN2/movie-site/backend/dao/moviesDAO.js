@@ -1,3 +1,5 @@
+import {ObjectId} from "mongodb"
+
 let movies
 
 export default class MoviesDAO{
@@ -43,6 +45,46 @@ static async getMovies({// default filter
     }
     }
     
+
+    static async getMovieById(id){
+        try{
+        //Inner join and get reviews inside
+        var result = await movies.aggregate([
+        {
+        $match: {
+        _id: new ObjectId(id),
+        }
+        } ,
+        { $lookup:
+        {
+        from: 'reviews',
+        localField: '_id',
+        foreignField: 'movie_id',
+        as: 'reviews',
+    }
+    }
+    ]).next();
+    return result;
+    }
+    catch(e){
+    console.error(`something went wrong in getMovieById: ${e}`)
+    throw e
+    }
+
+}
+
+    static async getRatings(){
+        let ratings = []
+        try{
+        ratings = await movies.distinct("rated")
+        return ratings
+        }
+        catch(e){
+        console.error(`unable to get ratings, $(e)`)
+        return ratings
+        }
+    }
+        
 
 
 }
