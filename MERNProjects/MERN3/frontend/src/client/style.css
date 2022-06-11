@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: unset;
+}
+
+
+body {
+    background-color: #f6f7f9;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace
+   }
+p 
+{
+    margin-bottom: 0;
+}
+
+form {
+    padding-bottom: 20px;
+   }
+   form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-color: #bbb;
+   }
+   form [type=submit] {
+    border: none;
+    background-color: #6ca6fd;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    float: right;
+   }
