@@ -19,7 +19,6 @@ movieRouter.get("/",(req,res,next)=>
     }
 });
 
-
 movieRouter.route("/review")
 .post(ReviewsController.apiPostReview)
 .put(ReviewsController.apiUpdateReview)

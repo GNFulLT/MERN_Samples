@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Card from "react-bootstrap/Card";
+import MoviePoster from "../images/poster.jpg"
 
 const MovieList = ( props ) => {
   const [movies, setMovies] = useState([])
@@ -24,7 +25,11 @@ const MovieList = ( props ) => {
     MovieDataService.getAll()
     .then(response =>{
     console.log(response.data)
-    setMovies(response.data.movies)
+    const newData = response.data.movies.map(data => {
+      console.log("burdayım");
+      return {...data,key:data._id};
+    });
+    setMovies(newData)
     })
     .catch( e =>{
     console.log(e)
@@ -51,7 +56,32 @@ const MovieList = ( props ) => {
       const searchRating = e.target.value
       setSearchRating(searchRating);
       }
-
+    
+      const find = (query,by) =>
+      {
+          MovieDataService.find(query,by)
+          .then(response =>{
+            setMovies(response.data.movies);
+          })
+          .catch(err=>{
+            console.log(err);
+          });
+      }
+      const findByTitle = () =>
+      {
+        find(searchTitle,"title");
+      }
+      const findByRating = () =>
+      {
+        if(searchRating === "All Ratings")
+        {
+          retrieveMovies();
+        }
+        else
+        {
+          find(searchRating,"rated");
+        }
+      }
   return (
 <div className="App">
 <Container>
@@ -101,7 +131,15 @@ Search
     return(
     <Col>
     <Card style={{width:"18rem"}}>
-      
+      <Card.Img src={MoviePoster}></Card.Img>
+      <Card.Body>
+        <Card.Title>{movie.title}</Card.Title>
+        <Card.Text>
+          Rating: {movie.rated}
+        </Card.Text>
+        <Card.Text>{movie.plot}</Card.Text>
+        <Link to={"/movies/"+movie._id}>View Reviews</Link>
+      </Card.Body>
     </Card>
     </Col>)
   })}
