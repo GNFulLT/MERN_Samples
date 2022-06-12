@@ -3,7 +3,17 @@ import path from "path";
 import helmet from "helmet";
 import compress from "compression";
 import cors from "cors";
-import services from "./services";
+import servicesLoader from './services';
+import db from './database';
+
+console.log("Starting")
+
+const utils = {
+  db,
+ };
+
+const services = servicesLoader(utils);
+
 
 const root = path.join(__dirname, "../../");
 
@@ -14,6 +24,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(helmet());
+
+
 
 app.use(helmet({
   contentSecurityPolicy : (process.env.NODE_ENV === 'production') ? undefined :  {
@@ -39,20 +51,6 @@ const startApollo = async () =>
 }
 
 startApollo();
-// const serviceNames = Object.keys(services);
-
-// for (let i = 0; i < serviceNames.length; i += 1) {
-//   const name = serviceNames[i];
-//   console.log(name)
-//   if (name === "graphql") {
-//     (async () => {
-//       await services[name].start();
-//       services[name].applyMiddleware({ app,path:"/graphql" });
-//     })();
-//   } else {
-//     app.use(`/${name}`, services[name]);
-//   }
-// }
 
 app.use("/", express.static(path.join(root, "dist/client")));
 
