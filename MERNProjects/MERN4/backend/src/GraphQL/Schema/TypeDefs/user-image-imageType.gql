@@ -1,0 +1,15 @@
+type ImageType {
+  name: String!
+}
+
+type Image {
+  imageType: ImageType!
+  image: String
+}
+
+type User {
+  name: String!
+  surname: String
+  username: String
+  image: Image
+}

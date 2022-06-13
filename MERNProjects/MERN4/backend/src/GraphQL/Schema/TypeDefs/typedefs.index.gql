@@ -1,0 +1,6 @@
+#Queries
+type Query {
+  getUsers(limit: Int): [User!]
+}
+
+#Mutations
