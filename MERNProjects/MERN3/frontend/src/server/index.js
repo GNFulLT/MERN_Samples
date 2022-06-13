@@ -23,9 +23,9 @@ const app = express();
 
 const port = process.env.PORT || 5000;
 
+
+if(process.env.NODE_ENV === "production"){
 app.use(helmet());
-
-
 
 app.use(helmet({
   contentSecurityPolicy : (process.env.NODE_ENV === 'production') ? undefined :  {
@@ -38,7 +38,7 @@ app.use(helmet({
   }
 }));
 app.use(helmet.referrerPolicy({ policy: "same-origin" }));
-
+}
 app.use(compress());
 
 app.use(cors());

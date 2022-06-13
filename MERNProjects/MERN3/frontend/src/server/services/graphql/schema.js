@@ -1,10 +1,16 @@
 import { gql } from "apollo-server-express";
 
 const typeDefinitions = `#graphql
- 
+
+ type User{
+id:Int
+avatar: String
+ }
+
  type Post {
  id: Int
  text: String
+ user: User
  }
 
  type RootQuery {
