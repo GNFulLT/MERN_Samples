@@ -1,14 +1,23 @@
 const path = require("path");
-const webpack = require("webpack");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const buildDirectory = "dist";
+const outputDirectory = buildDirectory + "/client";
 module.exports = {
+  mode: "development",
   entry: "./src/index.js",
+  output: {
+    path: path.join(__dirname, outputDirectory),
+    filename: "bundle.js",
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: {
+          loader: "babel-loader",
+        },
       },
       {
         test: /\.css$/,
@@ -16,16 +25,16 @@ module.exports = {
       },
     ],
   },
-  output: {
-    path: path.join(__dirname, "dist"),
-    publicPath: "/",
-    filename: "bundle.js",
-  },
   devServer: {
-    contentBase: "./dist",
+    port: 3000,
     open: true,
-    hot: true,
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  devtool: "source-map",
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [path.join(__dirname, buildDirectory)],
+    }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+  ],
 };
