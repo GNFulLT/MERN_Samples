@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 const devType = process.env.NODE_ENV || production;
 
-if(devType !== "production")
+if(devType === "production")
 {
 console.log("DevType is production using helmet security");
 
