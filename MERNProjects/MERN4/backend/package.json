@@ -6,8 +6,8 @@
   "scripts": {
     "server": "nodemon --exec babel-node --watch src/ src/index.js"
   },
-  "prisma":{
-    "seed":"ts-node Database/Seeders/FakeSeeders/userSeeder.ts"
+  "prisma": {
+    "seed": "ts-node Database/Seeders/FakeSeeders/movieSeeder.ts"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "graphql": "^16.5.0",
     "helmet": "^5.1.0",
     "nodemon": "^2.0.16"
   },

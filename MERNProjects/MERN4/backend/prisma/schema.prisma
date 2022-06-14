@@ -14,15 +14,51 @@ model ImageType{
   id Int @id @default(autoincrement())
   name String @db.VarChar(255) @unique 
   users User[]
+  movies Movie[]
 }
 
 model User{
   id Int @id @default(autoincrement())
   name String?
   surname String?
+  email String @db.VarChar(255) @unique
   username String @db.VarChar(255) @unique
   password String 
-  imageTypeID Int 
+  imageTypeID Int @default(1)
   imageType ImageType @relation(fields: [imageTypeID],references: [id])
   createdAt DateTime @default(now())
+  posts Post[]
+}
+
+model Movie{
+  id Int @id @default(autoincrement())
+  categoryID Int
+  imageTypeID Int @default(1)
+  title String @db.VarChar(255)
+  about String @db.MediumText
+  review String @db.MediumText
+  view Int @default(0)
+  like Int @default(0)
+  dislike Int @default(0)
+  totalRate Float @default(0)
+  posts Post[]
+  category Category @relation(fields: [categoryID],references: [id])
+  imageType ImageType @relation(fields: [imageTypeID],references: [id])
+
+}
+
+model Category{
+    id Int @id @default(autoincrement())
+    categoryName String @db.VarChar(23) @unique
+    movies Movie[] 
+}
+
+model Post{
+    id Int @id @default(autoincrement())
+    movieID Int
+    userID Int
+    text Int
+    rate Float
+    user User @relation(fields:[userID],references: [id])
+    movie Movie @relation(fields:[movieID],references: [id])
 }

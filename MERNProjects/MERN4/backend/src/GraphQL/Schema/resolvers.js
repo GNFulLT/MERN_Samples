@@ -1,24 +1,31 @@
-import users from "../FakeData/users.js"
-
+import userController from "../../Controllers/userController.js";
+import movieController from "../../Controllers/movieController.js";
 const resolvers = {
-    Image:{
-        imageType()
-        {
-            return {name:"Base64"};
-        }
-    },
-    User:{
-        image()
-        {
-            return {image:"sa"};
-        }
-    },
     Query:{
-        getUsers(_,{limit = 20}){
-            if(limit > 200)
-                limit = 20;
-            let sliceLimit = users.length > limit ? limit : users.length;
-            return users.slice(0,sliceLimit);
+        async getImageTypes(root,args,context)
+        {
+            const res = await userController.getImageTypes();
+            return res;
+        },
+        async getImageTypeByID(root,{imageTypeID},context)
+        {
+            const res = await userController.getImageTypeByID(imageTypeID);
+            return res;
+        },
+        async getMovies(root,{limit=20},context)
+        {
+            const res = await movieController.getMovies(limit);
+            return res;
+        },
+        async getCategories(root,{limit=20},context)
+        {
+            const res = await movieController.getCategories(limit);
+            return res;
+        },
+        async getCategoryByID(root,{categoryID},context)
+        {
+            const res = await movieController.getCategoryByID(categoryID);
+            return res;
         }
     },
 };

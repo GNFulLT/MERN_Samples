@@ -1,4 +1,5 @@
 type ImageType {
+  id:Int
   name: String!
 }
 
@@ -9,6 +10,7 @@ type Image {
 
 type User {
   name: String!
+  email: String
   surname: String
   username: String
   image: Image

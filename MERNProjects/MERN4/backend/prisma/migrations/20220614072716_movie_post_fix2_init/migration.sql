@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `movie` ADD COLUMN `imageTypeID` INTEGER NOT NULL DEFAULT 1;
+
+-- AddForeignKey
+ALTER TABLE `Movie` ADD CONSTRAINT `Movie_imageTypeID_fkey` FOREIGN KEY (`imageTypeID`) REFERENCES `ImageType`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

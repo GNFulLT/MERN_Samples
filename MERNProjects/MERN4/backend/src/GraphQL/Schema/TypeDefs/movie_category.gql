@@ -1,0 +1,18 @@
+#import Image from user-image-imageType.gql
+
+type Movie{
+    categoryID:Int
+    title:String
+    about:String
+    review:String
+    like:Int
+    dislike:Int
+    view:Int
+    totalRate:Float
+    imageTypeID:Int
+}
+
+type Category{
+    id:Int
+    categoryName:String
+}

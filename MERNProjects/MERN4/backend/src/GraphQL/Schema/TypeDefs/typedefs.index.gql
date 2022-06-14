@@ -1,6 +1,12 @@
 #Queries
 type Query {
-  getUsers(limit: Int): [User!]
+  getCategories(limit:Int) : [Category!]
+  getCategoryByID(categoryID:Int!) : Category
+  getMovies(limit:Int) : [Movie!]
+  getImageTypes:[ImageType!]
+  getImageTypeByID(imageTypeID: Int!) : ImageType
 }
-
 #Mutations
+type Mutation {
+  register(username:String!,email:String!,password:String!) : User
+}

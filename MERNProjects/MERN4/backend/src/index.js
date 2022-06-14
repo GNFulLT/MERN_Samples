@@ -2,7 +2,7 @@ import helmet from "helmet";
 import express from "express";
 import dotenv from "dotenv"
 import cors from "cors";
-import apolloServer from "./GraphQL/index";
+import apolloServer from "./GraphQL/index.js";
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 const devType = process.env.NODE_ENV || production;
 
-if(devType === "production")
+if(devType !== "production")
 {
 console.log("DevType is production using helmet security");
 

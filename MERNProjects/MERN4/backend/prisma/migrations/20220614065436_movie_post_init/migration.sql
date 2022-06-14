@@ -1,0 +1,26 @@
+-- CreateTable
+CREATE TABLE `Movie` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `title` VARCHAR(191) NULL,
+    `view` INTEGER NOT NULL DEFAULT 0,
+    `like` INTEGER NOT NULL DEFAULT 0,
+    `dislike` INTEGER NOT NULL DEFAULT 0,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Post` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `movieID` INTEGER NOT NULL,
+    `userID` INTEGER NOT NULL,
+    `text` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Post` ADD CONSTRAINT `Post_userID_fkey` FOREIGN KEY (`userID`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Post` ADD CONSTRAINT `Post_movieID_fkey` FOREIGN KEY (`movieID`) REFERENCES `Movie`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
