@@ -1,12 +1,12 @@
 import React from 'react'
 import Navbar from './Components/Navbar/Navbar.jsx'
-import styles from "./section.module.css"
+import AnimeShowcase from './Components/AnimeShowcase/AnimeShowcase.jsx'
 
 const App = () => {
   return (
     <>
     <Navbar></Navbar>
-    <section className={styles["secs"]}></section>
+    <AnimeShowcase></AnimeShowcase>
     </>
   );
 }
