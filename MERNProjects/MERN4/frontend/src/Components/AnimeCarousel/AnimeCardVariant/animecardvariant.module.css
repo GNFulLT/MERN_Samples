@@ -1,0 +1,62 @@
+.card{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+
+.card img{
+    width: 70%;
+    object-fit: cover;
+    position: absolute;
+    height: 100%;
+}
+
+.card::before
+{
+    content: "";
+    position:absolute;
+    display: block;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(0deg,rgba(213, 184, 255,0.3),transparent);
+    z-index: 2;
+    transition: 0.5s all;
+    opacity: 1;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    z-index: 255;
+}
+
+@media(max-width:859px)
+{
+    .card{
+        width: 60%;
+    }
+    .card img{
+        width: 60%;
+    }
+    .content
+    {
+        font-size: x-small;
+    }
+    .content h2
+    {
+        font-size: small;
+    }
+    .content p
+    {
+        font-size: smaller;
+    }
+}

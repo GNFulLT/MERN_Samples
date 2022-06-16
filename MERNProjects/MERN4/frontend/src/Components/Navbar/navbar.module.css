@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+}
+
 .navbar{
     display: flex;
     height:15vh;
@@ -17,7 +21,7 @@
     border-radius: 50%;
     filter: brightness(120%);
     filter: contrast(120%);
-    filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5));
+    filter: drop-shadow(0px 0px 10px #966fd6);
 }
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300&display=swap');
 
@@ -130,7 +134,37 @@
     margin: 0 60px 0 0;
 }
 
-@media(max-width:959px)
+
+
+@media(max-width:1400px) {
+
+    .pagination
+    {
+        width: 50%;
+    }
+    .pagination,
+    .pagination li a
+    {
+        font-size: large;
+    }
+    
+    .search-bar
+    {
+        padding: 5px 5px;
+    }
+    .search-bar button
+    {
+        width: 25px;
+        height: 25px;
+    }
+    .search-bar input
+    {
+        width: 150px;
+        font-size: small;        
+    }
+}
+
+@media(max-width:859px)
 {
     .pagination,
     .pagination li a
@@ -141,7 +175,24 @@
     }
 
     .top_left_image{
-        width: 100px;
-        height: 80%;
+        width:140px;
+        height: 100%;
+        margin: 0;
+    }
+
+    .search-bar
+    {
+        padding: 5px 5px;
+    }
+    ::placeholder
+    {
+        font-size: x-small;
+    }
+
+
+    .search-bar input
+    {
+        width: 120px;
+        font-size: small;        
     }
 }
